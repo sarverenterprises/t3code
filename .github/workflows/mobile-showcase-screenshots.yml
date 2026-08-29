@@ -69,12 +69,16 @@ jobs:
 
       - name: Upload iOS screenshots
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: sarverenterprises/ci-artifacts/upload@398206bcca4467193ec4cf14d58ef50e4e6dda3e
         with:
           name: app-store-connect-screenshots
           path: artifacts/app-store/screenshots/apple/
           if-no-files-found: warn
-          retention-days: 14
+        env:
+          R2_CI_ACCESS_KEY_ID: ${{ secrets.R2_CI_ACCESS_KEY_ID }}
+          R2_CI_SECRET_ACCESS_KEY: ${{ secrets.R2_CI_SECRET_ACCESS_KEY }}
+          R2_CI_ENDPOINT: ${{ vars.R2_CI_ENDPOINT }}
+          R2_CI_BUCKET: ${{ vars.R2_CI_BUCKET }}
 
   android:
     name: Android phone, 7-inch tablet, and 10-inch tablet
@@ -144,9 +148,13 @@ jobs:
 
       - name: Upload Android screenshots
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: sarverenterprises/ci-artifacts/upload@398206bcca4467193ec4cf14d58ef50e4e6dda3e
         with:
           name: google-play-screenshots
           path: artifacts/app-store/screenshots/google-play/
           if-no-files-found: warn
-          retention-days: 14
+        env:
+          R2_CI_ACCESS_KEY_ID: ${{ secrets.R2_CI_ACCESS_KEY_ID }}
+          R2_CI_SECRET_ACCESS_KEY: ${{ secrets.R2_CI_SECRET_ACCESS_KEY }}
+          R2_CI_ENDPOINT: ${{ vars.R2_CI_ENDPOINT }}
+          R2_CI_BUCKET: ${{ vars.R2_CI_BUCKET }}
