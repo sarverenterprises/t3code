@@ -666,7 +666,7 @@ jobs:
     name: Publish CLI to npm
     needs: [preflight, relay_public_config, build]
     if: ${{ !failure() && !cancelled() && needs.preflight.result == 'success' && needs.relay_public_config.result == 'success' && needs.build.result == 'success' }}
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux]
     timeout-minutes: 10
     permissions:
       contents: read
